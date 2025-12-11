@@ -1,5 +1,11 @@
+import AppGuard from "../../component/AppGuard";
+
 const Selling = () => {
-	return <div>Selling</div>;
+	return (
+		<AppGuard page="sales">
+			<div></div>
+		</AppGuard>
+	);
 };
 
 export default Selling;

@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 import { displayError } from "../../utils/display";
+import { userDetailsType } from "../../utils/types";
 
 const initialState = {
 	loading: false,
-	carousels: [] as any,
-	visited: false,
+	user: userDetailsType,
 };
 
 export const fetchUserProfile = createAsyncThunk(
@@ -15,7 +15,7 @@ export const fetchUserProfile = createAsyncThunk(
 			const res = await authService.fetchProfile();
 			return res;
 		} catch (error) {
-			const message = displayError(error, true);
+			const message = displayError(error, false);
 			return thunkAPI.rejectWithValue(message);
 		}
 	}
@@ -32,10 +32,18 @@ export const authSlice = createSlice({
 			localStorage.removeItem("@savedtoken");
 			state.loading = false;
 		},
+		logout: (state) => {
+			state.user = {};
+			state.loading = false;
+		},
 	},
-	extraReducers: () => {},
+	extraReducers: (builder) => {
+		builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
+			state.user = action.payload;
+		});
+	},
 });
 
-export const { clearLoad, logoutFromStorage } = authSlice.actions;
+export const { clearLoad, logoutFromStorage, logout } = authSlice.actions;
 
 export default authSlice.reducer;

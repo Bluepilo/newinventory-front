@@ -22,7 +22,7 @@ const AppDropDown = () => {
 		}
 	};
 
-	const apps = [{ appKey: "Inventory" }];
+	const apps = [{ appKey: "Inventory", id: 1 }];
 
 	return (
 		<OutsideClick handleToggle={() => setOpen(false)}>

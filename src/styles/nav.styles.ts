@@ -8,6 +8,7 @@ export const PageStyle = styled.div`
 
 export const PageContent = styled.div<{ minimized: string }>`
 	position: relative;
+	margin-top: 50px;
 	margin-left: ${(props) => (props.minimized === "true" ? "70px" : "180px")};
 	height: 100vh;
 	display: flex;
@@ -39,7 +40,7 @@ export const SidebarDiv = styled.div<{ minimize: string }>`
 	z-index: 1029;
 	transition: all 0.3s ease-in-out;
 	padding: 10px;
-	overflow: hidden;
+	overflow: visible;
 
 	.logo {
 		text-align: center;
@@ -74,7 +75,8 @@ export const MenuBoard = styled.div<{ minimized: boolean }>`
 	padding-top: 20px;
 
 	&:hover {
-		overflow-y: auto;
+		/* overflow-y: auto;
+		overflow-x: visible; */
 	}
 
 	a.menu {
@@ -130,6 +132,27 @@ export const MenuBoard = styled.div<{ minimized: boolean }>`
 				background: ${colors.secondary};
 			}
 		}
+
+		span.tooltip {
+			position: absolute;
+			/* left: 110%;
+			top: 50%;
+			transform: translateY(-50%); */
+			background-color: #333;
+			color: white;
+			padding: 4px 8px;
+			border-radius: 4px;
+			font-size: 13px;
+			white-space: nowrap;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.2s ease, transform 0.2s ease;
+		}
+
+		/* &:hover .tooltip {
+			opacity: 1;
+			transform: translateY(-50%) translateX(5px);
+		} */
 	}
 `;
 
@@ -193,6 +216,71 @@ export const NavHeaderStyles = styled.div<{ minimize: string }>`
 	.menu-mobile {
 		@media (min-width: 991px) {
 			display: none;
+		}
+	}
+`;
+
+export const ProgressCountStyle = styled.div<{ color: string }>`
+	background: ${(props) => props.color};
+	color: #fff;
+	font-size: 0.8rem;
+	padding: 8px 20px;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-left: 10px;
+
+	span {
+		font-weight: 600;
+		margin-left: 5px;
+	}
+
+	@media (max-width: 991px) {
+		display: none;
+	}
+`;
+
+export const NavCollapsedDrop = styled.div`
+	position: absolute;
+	right: -220px;
+	z-index: 999991;
+	width: 200px;
+	top: 0px;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.09);
+	border-radius: 10px;
+	font-size: 0.9rem;
+
+	.top-drop {
+		background: #000;
+		padding: 10px 15px;
+		color: #fff;
+		text-transform: capitalize;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		font-weight: 600;
+	}
+	.bottom-drop {
+		padding: 10px 15px;
+		padding-bottom: 0px;
+		a {
+			display: block;
+			text-decoration: none;
+			margin-bottom: 10px;
+			color: #000;
+			font-weight: 600;
+			font-size: 0.9rem;
+			padding: 5px 40px 5px 20px;
+			border-radius: 10px;
+
+			&.active {
+				background: ${colors.secondary};
+				color: #fff;
+			}
+
+			&:hover {
+				background: #007bff33;
+				color: #000;
+			}
 		}
 	}
 `;

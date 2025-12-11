@@ -1,4 +1,8 @@
 import { toast } from "sonner";
+import store from "../redux/store";
+import { logout } from "../redux/auth/authSlice";
+
+let showing401Alert = false;
 
 const displayError = (error: any, display?: boolean) => {
 	let status = error?.response?.status;
@@ -24,6 +28,12 @@ const displayError = (error: any, display?: boolean) => {
 			position: "top-right",
 		});
 	}
+
+	if (message.includes("Session expired.")) {
+		showing401Alert = true;
+		store.dispatch(logout());
+	}
+
 	return message;
 };
 

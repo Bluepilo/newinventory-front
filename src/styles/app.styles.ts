@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../utils/colors";
 
 export const BasicDrop = styled.div<{
 	$open: boolean;
@@ -101,6 +102,74 @@ export const BizSelectStyle = styled.div`
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+		}
+	}
+`;
+
+export const AuthCover = styled.div`
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.box {
+		background-color: #000;
+		padding: 20px;
+		border-radius: 10px;
+	}
+`;
+
+export const ProgressTrack = styled.div<{ width: number }>`
+	width: 100%;
+	height: 8px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 9999px;
+	overflow: hidden;
+	margin-top: 30px;
+
+	.fill {
+		width: ${(props) => props.width}%;
+		background-color: #0141ff;
+		height: 100%;
+		transition: width 0.4s ease;
+	}
+`;
+
+export const KickStartStyle = styled.div`
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+
+	.content {
+		width: 40%;
+		text-align: center;
+
+		img {
+			height: 250px;
+			margin-bottom: 20px;
+		}
+
+		h5 {
+			font-weight: bold;
+		}
+		p {
+			color: #bebebe;
+		}
+		button {
+			background: ${colors.secondary};
+			color: #fff;
+			border: 0;
+			outline: 0;
+			padding: 15px 50px;
+			border-radius: 15px;
+			font-size: 0.9rem;
+			font-weight: 600;
 		}
 	}
 `;

@@ -1,5 +1,5 @@
 const dev = {
-	baseUrl: "",
+	baseUrl: "https://dev-app.bluepilo.com/api/v2",
 };
 
 const config = dev;
